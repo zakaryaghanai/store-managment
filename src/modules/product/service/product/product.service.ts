@@ -6,14 +6,14 @@ import { CreateProductDto } from '../../dto/create-product.dto';
 import { UpdateProductDto } from '../../dto/update-product.dto';
 import { Product } from '../../entity/product.entity';
 import { productsPaginateConfig } from '../../pagination/products.pagination.config';
-import { ProductSCategoryService } from './product-category.service';
+import { ProductsCategoryService } from './product-category.service';
 
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(Product) private readonly productRepository: Repository<Product>,
-    private readonly productSCategoryService: ProductSCategoryService
+    private readonly productSCategoryService: ProductsCategoryService
   ) { }
 
   async findAll(query: PaginateQuery) {

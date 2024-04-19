@@ -5,7 +5,7 @@ import { CreateProductCategoryDto } from '../../dto/create-product-category.dto'
 import { ProductCategory } from '../../entity/product-category.entity';
 
 @Injectable()
-export class ProductSCategoryService {
+export class ProductsCategoryService {
   constructor(
     @InjectRepository(ProductCategory) private readonly productCategoryRepository: Repository<ProductCategory>,
   ) { }

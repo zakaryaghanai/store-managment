@@ -6,7 +6,7 @@ import { CreateProductDto } from '../../dto/create-product.dto';
 import { UpdateProductDto } from '../../dto/update-product.dto';
 import { ProductCategory } from '../../entity/product-category.entity';
 import { Product } from '../../entity/product.entity';
-import { ProductSCategoryService } from './product-category.service';
+import { ProductsCategoryService } from './product-category.service';
 import { ProductService } from './product.service';
 
 type MockRepository<T = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -31,7 +31,7 @@ describe('ProductService', () => {
           useValue: createMockRepository(),
         },
         {
-          provide: ProductSCategoryService,
+          provide: ProductsCategoryService,
           useValue: {},
         },
       ],
