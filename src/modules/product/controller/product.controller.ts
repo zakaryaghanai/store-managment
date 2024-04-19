@@ -5,7 +5,8 @@ import { Role } from 'src/modules/auth/enum/role.enum';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { ProductService } from '../service/product/product.service';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiParam, ApiQuery } from '@nestjs/swagger';
+import { ApiProductsQuery } from '../decorators/api-products-query.decorator';
 
 @ApiBearerAuth()
 @Controller('products')
@@ -14,6 +15,7 @@ export class ProductController {
   constructor(private readonly productService: ProductService) { }
 
   @Get()
+  @ApiProductsQuery()
   findAll(@Paginate() query: PaginateQuery) {
     return this.productService.findAll(query)
   }
