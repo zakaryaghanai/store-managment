@@ -5,7 +5,9 @@ import { Role } from 'src/modules/auth/enum/role.enum';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { ProductService } from '../service/product/product.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('products')
 export class ProductController {
 
