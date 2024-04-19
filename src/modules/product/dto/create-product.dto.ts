@@ -16,5 +16,5 @@ export class CreateProductDto {
 
   @IsOptional()
   @IsNotEmpty()
-  image: string;
+  image?: string;
 }
