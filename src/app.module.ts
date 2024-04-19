@@ -5,9 +5,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { typeOrmConfig } from './common/database/typeorm.config';
 import { UserModule } from './modules/user/user.module';
-import { APP_FILTER } from '@nestjs/core';
-import { ExceptionsFilter } from './common/exceptions/exceptions-filter';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { QueryErrorFilter } from './common/exceptions/exceptions-filter';
 import { AuthModule } from './modules/auth/auth.module';
+import { AuthGuard } from './modules/auth/guard/auth.guard';
+import { RolesGuard } from './modules/auth/guard/roles.guard';
 
 @Module({
   imports: [
@@ -28,8 +30,16 @@ import { AuthModule } from './modules/auth/auth.module';
     AppService,
     {
       provide: APP_FILTER,
-      useClass: ExceptionsFilter,
+      useClass: QueryErrorFilter,
     },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard
+    }
   ],
 })
 export class AppModule { }
