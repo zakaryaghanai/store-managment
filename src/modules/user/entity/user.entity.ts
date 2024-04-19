@@ -1,3 +1,4 @@
+import { Role } from "src/modules/auth/enum/role.enum";
 import {
   Column,
   Entity,
@@ -16,6 +17,9 @@ export class User {
 
   @Column({ type: "varchar" })
   password: string;
+
+  @Column({ type: "enum", enum: Role, default: Role.User })
+  role: Role;
 
   @CreateDateColumn()
   createdAt: Date;

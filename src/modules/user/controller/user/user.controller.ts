@@ -1,7 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateUserDto } from '../../dto/create-user.dto';
 import { UserService } from '../../service/user.service';
+import { Role } from 'src/modules/auth/enum/role.enum';
+import { Roles } from 'src/modules/auth/decorator/roles.decorator';
 
+@Roles(Role.Admin)
 @Controller('users')
 export class UserController {
 
@@ -10,14 +13,13 @@ export class UserController {
   ) { }
 
   @Get()
-  async findAll() {
+  findAll() {
     return this.userService.findAll();
   }
 
-  @Post('create')
-  async create(@Body() createCatDto: CreateUserDto) {
+  @Post()
+  create(@Body() createCatDto: CreateUserDto) {
     return this.userService.create(createCatDto);
   }
-
 
 }
