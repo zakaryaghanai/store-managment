@@ -8,6 +8,7 @@ import { UserModule } from './modules/user/user.module';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { QueryErrorFilter } from './common/exceptions/exceptions-filter';
 import { AuthModule } from './modules/auth/auth.module';
+import { ProductModule } from './modules/product/product.module';
 import { AuthGuard } from './modules/auth/guard/auth.guard';
 import { RolesGuard } from './modules/auth/guard/roles.guard';
 
@@ -24,6 +25,7 @@ import { RolesGuard } from './modules/auth/guard/roles.guard';
     }),
     UserModule,
     AuthModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [

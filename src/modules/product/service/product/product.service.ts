@@ -1,11 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PaginateQuery, paginate } from 'nestjs-paginate';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from '../../dto/create-product.dto';
 import { UpdateProductDto } from '../../dto/update-product.dto';
-import { ProductCategory } from '../../entity/product-category.entity';
 import { Product } from '../../entity/product.entity';
+import { productsPaginateConfig } from '../../pagination/products.pagination.config';
 import { ProductSCategoryService } from './product-category.service';
+
 
 @Injectable()
 export class ProductService {
@@ -14,10 +16,9 @@ export class ProductService {
     private readonly productSCategoryService: ProductSCategoryService
   ) { }
 
-  findAll() {
-    return this.productRepository.find({
-      relations: ["categories"]
-    })
+  async findAll(query: PaginateQuery) {
+    const { data } = await paginate<Product>(query, this.productRepository, productsPaginateConfig)
+    return data
   }
 
   async findOne(id: number) {

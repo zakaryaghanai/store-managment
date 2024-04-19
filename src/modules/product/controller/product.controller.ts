@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Paginate, PaginateQuery } from 'nestjs-paginate';
 import { Roles } from 'src/modules/auth/decorator/roles.decorator';
 import { Role } from 'src/modules/auth/enum/role.enum';
 import { CreateProductDto } from '../dto/create-product.dto';
@@ -11,8 +12,8 @@ export class ProductController {
   constructor(private readonly productService: ProductService) { }
 
   @Get()
-  findAll() {
-    return this.productService.findAll()
+  findAll(@Paginate() query: PaginateQuery) {
+    return this.productService.findAll(query)
   }
 
   @Get(':id')
